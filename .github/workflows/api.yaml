@@ -41,7 +41,6 @@ jobs:
     - name: Run tests and generate report
       run: |
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html
-            working-directory: ${{ github.workspace }}
 
     - name: Save test report as artifact
       uses: actions/upload-artifact@v4
