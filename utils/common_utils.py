@@ -18,7 +18,7 @@ def generate_past_date():
     return past_date
 
 
-def generate_random_string(length=10):
+def generate_random_string(length=5):
     letters = string.ascii_letters
     return ''.join(random.choices(letters, k=length))
 

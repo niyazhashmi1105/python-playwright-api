@@ -1,7 +1,9 @@
 import pytest
 from datetime import datetime
 import requests
-import globals
+import os
+import json
+from faker import Faker
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_configure(config):
@@ -29,3 +31,31 @@ def auth_token():
     assert token is not None, "Failed to retrieve token"
     return token
 
+@pytest.fixture()
+def load_data():
+    json_file_path = os.path.join(os.path.dirname(__file__),"data","test_data.json")
+    with open(json_file_path) as json_file:
+        data = json.load(json_file)
+    return data
+
+@pytest.fixture()
+def generate_firstname():
+    faker = Faker()
+    return faker.first_name()
+
+@pytest.fixture()
+def generate_lastname():
+    faker = Faker()
+    return faker.last_name()
+
+@pytest.fixture()
+def generate_int():
+    faker = Faker()
+    return faker.random_int(min=100, max=500)
+
+@pytest.fixture()
+def generate_checkin_checkout_date():
+    faker = Faker()
+    start_date = faker.future_date(end_date="+60d")
+    end_date = faker.future_date(end_date="+90d")
+    return start_date, end_date
