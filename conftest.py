@@ -5,11 +5,11 @@ import os
 import json
 from faker import Faker
 
-@pytest.hookimpl(tryfirst=True)
-def pytest_configure(config):
-    report_dir = "reports"
-    now = datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
-    config.option.htmlpath = f"{report_dir}/report_{now}.html"
+# @pytest.hookimpl(tryfirst=True)
+# def pytest_configure(config):
+#     report_dir = "reports"
+#     now = datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
+#     config.option.htmlpath = f"{report_dir}/report_{now}.html"
 
 @pytest.fixture(scope = "session", autouse=True)
 def setup_teardown():
