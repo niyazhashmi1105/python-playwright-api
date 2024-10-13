@@ -9,5 +9,9 @@
       "checkout": "2019-01-01"
     },
     "additionalneeds": "Breakfast"
+  },
+  "partial_update": {
+    "firstname" : "James",
+    "lastname" : "Brown"
   }
 }
