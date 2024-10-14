@@ -1,4 +1,0 @@
-tests/test_booking_apis.py::test_create_booking: PASSED
-tests/test_booking_apis.py::test_get_booking_by_id: PASSED
-tests/test_booking_apis.py::test_update_booking_by_id: PASSED
-tests/test_booking_apis.py::test_delete_booking_by_id: PASSED
