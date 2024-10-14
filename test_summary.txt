@@ -7,19 +7,22 @@ configfile: pytest.ini
 plugins: html-4.1.1, metadata-3.1.1, Faker-30.3.0
 collecting ... collected 6 items
 
-tests/test_booking_apis.py::test_get_all_bookings PASSED                 [ 16%]
-tests/test_booking_apis.py::test_create_booking PASSED                   [ 33%]
-tests/test_booking_apis.py::test_get_booking_by_id PASSED                [ 50%]
-tests/test_booking_apis.py::test_update_booking_by_id PASSED             [ 66%]
-tests/test_booking_apis.py::test_partial_update_booking_by_id FAILED     [ 83%]
-tests/test_booking_apis.py::test_delete_booking_by_id PASSED             [100%]
+tests/test_booking_apis.py::test_get_all_bookings  set up resources required for API Execution
+PASSED
+tests/test_booking_apis.py::test_create_booking PASSED
+tests/test_booking_apis.py::test_get_booking_by_id PASSED
+tests/test_booking_apis.py::test_update_booking_by_id PASSED
+tests/test_booking_apis.py::test_partial_update_booking_by_id https://restful-booker.herokuapp.com/booking/3133
+FAILED
+tests/test_booking_apis.py::test_delete_booking_by_id PASSED tearing down all resources
+
 
 =================================== FAILURES ===================================
 ______________________ test_partial_update_booking_by_id _______________________
 
-api_client = <utils.api_client.APIClient object at 0x105305a90>
-load_data = {'booking_details_data': {'additionalneeds': 'Breakfast', 'bookingdates': {'checkin': '2018-01-01', 'checkout': '2019-01-01'}, 'depositpaid': True, 'firstname': 'Jim', ...}, 'partial_update': {'firstname': 'Ryan', 'lastname': 'Leonard'}}
-generate_firstname = 'Ryan', generate_lastname = 'Leonard'
+api_client = <utils.api_client.APIClient object at 0x102944500>
+load_data = {'booking_details_data': {'additionalneeds': 'Breakfast', 'bookingdates': {'checkin': '2018-01-01', 'checkout': '2019-01-01'}, 'depositpaid': True, 'firstname': 'Jim', ...}, 'partial_update': {'firstname': 'Amber', 'lastname': 'Velazquez'}}
+generate_firstname = 'Amber', generate_lastname = 'Velazquez'
 
     @pytest.mark.usefixtures()
     def test_partial_update_booking_by_id(api_client,load_data,generate_firstname,generate_lastname):
@@ -44,11 +47,9 @@ E       assert 200 == 201
 E        +  where 200 = <Response [200]>.status_code
 
 tests/test_booking_apis.py:93: AssertionError
------------------------------ Captured stdout call -----------------------------
-https://restful-booker.herokuapp.com/booking/4549
 - Generated html report: file:///Users/mdniyazhashmi/PycharmProjects/python-api-automation/pythonProject1/reports/report.html -
 =========================== short test summary info ============================
 FAILED tests/test_booking_apis.py::test_partial_update_booking_by_id - AssertionError: Invalid status code got 200
 assert 200 == 201
  +  where 200 = <Response [200]>.status_code
-========================= 1 failed, 5 passed in 9.54s ==========================
+========================= 1 failed, 5 passed in 8.76s ==========================

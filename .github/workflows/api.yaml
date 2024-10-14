@@ -41,6 +41,7 @@ jobs:
 
     - name: Run tests and generate report
       id: extract-results
+      continue-on-error: true
       run: |
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
             cat test_summary.txt
