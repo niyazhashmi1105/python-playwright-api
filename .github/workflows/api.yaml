@@ -45,8 +45,8 @@ jobs:
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
             cat test_summary.txt
             python parse_report.py > test_results.txt
-            results=$(cat test_results.txt)
-            echo "$results" >> $GITHUB_ENV
+            results=$(cat parsed_results.txt | tr '\n' '; ')  # Join results with semicolon
+            echo "RESULTS=$results" >> $GITHUB_ENV  # Set the RESULTS environment variable
       continue-on-error: true
 
     - name: Save test report as artifact
