@@ -46,7 +46,7 @@ jobs:
             cat test_summary.txt
             python parse_report.py > test_results.txt
             results=$(cat test_results.txt)
-            echo "::set-output name=results::$results"
+            echo "$results" > $GITHUB_ENV
       continue-on-error: true
 
     - name: Save test report as artifact
@@ -63,10 +63,9 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Test Report: API Automation Results"
-          content_type: text/plain
           body: |
-              Here are the test results:
-              ${{ steps.extract-results.outputs.results }}
+              Please find the test results:
+              ${{ env.results }}
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
