@@ -36,6 +36,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install beautifulsoup4
       working-directory: ${{ github.workspace }}
 
     - name: Run tests and generate report
@@ -48,13 +49,11 @@ jobs:
           name: html-report
           path: reports/
 
-    - name: Read HTML report content
-      id: read-html
+    - name: Extract Test Results
+      id: extract-results
       run: |
-          REPORT_CONTENT=$(cat reports/report.html)
-          echo "report_content<<EOF" >> $GITHUB_ENV
-          echo "$REPORT_CONTENT" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          python ./utils/parse_report.py > test_summary.txt
+          cat test_summary.txt
 
     - name: Send email with HTML report
       uses: dawidd6/action-send-mail@v3
@@ -65,10 +64,10 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Test Report: API Automation Results"
           body: |
-              <h2>Pytest API Automation Report Preview</h2>
-              <p>Please find the test report below and attached as well.</p>
-              <hr>
-              ${{ env.report_content }}
+              <h2>API Automation Test Report Summary</h2>
+              <p>Below is the summary of the test results:</p>
+              <pre>${{ steps.extract-results.outputs.summary }}</pre> 
+              <p>The detailed HTML report attached.</p>
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
