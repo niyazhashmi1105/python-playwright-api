@@ -43,7 +43,6 @@ jobs:
       id: extract-results
       run: |
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
-            cat test_summary.txt
             python parse_report.py > test_results.txt
             results=$(cat test_results.txt | tr '\n' '; ')  # Join results with semicolon
             echo "RESULTS=$results" >> $GITHUB_ENV  # Set the RESULTS environment variable
@@ -65,7 +64,7 @@ jobs:
           subject: "Test Report: API Automation Results"
           body: |
               Please find the test results:
-              ${{ env.results }}
+              ${{ env.RESULTS }}
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
