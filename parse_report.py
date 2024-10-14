@@ -15,7 +15,7 @@ def extract_test_results_from_text(file_path):
             if match:
                 test_case_name = match.group(1).strip()  # Extract the test case name
                 test_status = match.group(2).strip()  # Extract the status (PASSED/FAILED)
-                test_results.append(f"<li>{test_case_name}: {test_status}</li>")
+                test_results.append(f"<li>{test_case_name}: {test_status}</li>\n")
 
     return test_results
 
