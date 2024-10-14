@@ -37,7 +37,7 @@ if __name__ == '__main__':
     results = "\n".join(test_results)
 
     email_body = f"""
-        <h2>Pytest Test Results:</h2>
+        <h2>API Automation Report:</h2>
         <p><strong>Total Test Cases:</strong> {total_tests}</p>
         <p><strong>Passed Test Cases:</strong> {passed_tests}</p>
         <p><strong>Failed Test Cases:</strong> {failed_tests}</p>
