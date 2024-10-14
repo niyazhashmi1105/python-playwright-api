@@ -90,7 +90,7 @@ def test_partial_update_booking_by_id(api_client,load_data,generate_firstname,ge
     patch_update_details['lastname'] = lname
 
     response = api_client.partial_update_by_booking_id("booking",booking_id, username,password, patch_update_details)
-    assert response.status_code == 201, f"Invalid status code got {response.status_code}"
+    assert response.status_code == 200, f"Invalid status code got {response.status_code}"
     assert response.json()['firstname'] == fname, f"Invalid first name got {response.json()['firstname']}"
     assert response.json()['lastname'] == lname, f"Invalid last name got {response.json()['lastname']}"
 
