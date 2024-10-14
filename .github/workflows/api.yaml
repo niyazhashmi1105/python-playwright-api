@@ -44,7 +44,7 @@ jobs:
       run: |
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
             python parse_report.py > test_results.txt
-            results=$(cat test_results.txt)  # Join results with semicolon
+            results=$(cat test_results.txt | sed 's/$/\\n/' | tr '\n' ' ')
             echo "RESULTS=$results" >> $GITHUB_ENV  # Set the RESULTS environment variable
       continue-on-error: true
 
@@ -62,9 +62,10 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Test Report: API Automation Results"
+          content_type: text/html
           body: |
-              Please find the test results:
-              ${{ env.RESULTS }}
+              <h2>Please find the test results:</h2>
+                ${{ env.RESULTS }}
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
