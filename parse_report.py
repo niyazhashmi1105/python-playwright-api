@@ -15,10 +15,7 @@ def extract_test_results_from_text(file_path):
             if match:
                 test_case_name = match.group(1).strip()  # Extract the test case name
                 test_status = match.group(2).strip()  # Extract the status (PASSED/FAILED)
-                test_results.append({
-                    'name': test_case_name,
-                    'status': test_status
-                })
+                test_results.append(f"<li>{test_case_name}: {test_status}</li>")
 
     return test_results
 
@@ -32,4 +29,4 @@ if __name__ == '__main__':
 
     # Print the results
     for result in results:
-        print(f"{result['name']} - {result['status']}")
+        print("\n".join(results))
