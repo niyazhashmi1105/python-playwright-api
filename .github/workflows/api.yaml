@@ -40,22 +40,18 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Run tests and generate report
+      id: extract-results
       run: |
-            pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html
+            pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
+            cat test_summary.txt
+            python parse_report.py > test_results.txt
+            cat test_results.txt
 
     - name: Save test report as artifact
       uses: actions/upload-artifact@v4
       with:
           name: html-report
           path: reports/
-
-    - name: Extract Test Results
-      id: extract-results
-      run: |
-            ls -al reports/
-            chmod 644 reports/report.html
-            python parse_report.py > test_summary.txt
-            cat test_summary.txt
 
     - name: Send email with HTML report
       uses: dawidd6/action-send-mail@v3
@@ -68,6 +64,7 @@ jobs:
           body: |
               <h2>API Automation Test Report Summary</h2>
               <p>Below is the summary of the test results:</p>
+              <pre>echo ${{ steps.extract-results.outputs.summary }}</pre>
               <pre>${{ steps.extract-results.outputs.summary }}</pre> 
               <p>The detailed HTML report attached.</p>
           to: niyazhashmi161921@gmail.com

@@ -1,1 +1,54 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0 -- /Users/mdniyazhashmi/PycharmProjects/python-api-automation/pythonProject1/.venv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.6', 'Platform': 'macOS-15.0.1-arm64-arm-64bit', 'Packages': {'pytest': '8.3.3', 'pluggy': '1.5.0'}, 'Plugins': {'html': '4.1.1', 'metadata': '3.1.1', 'Faker': '30.3.0'}}
+rootdir: /Users/mdniyazhashmi/PycharmProjects/python-api-automation/pythonProject1
+configfile: pytest.ini
+plugins: html-4.1.1, metadata-3.1.1, Faker-30.3.0
+collecting ... collected 6 items
 
+tests/test_booking_apis.py::test_get_all_bookings PASSED                 [ 16%]
+tests/test_booking_apis.py::test_create_booking PASSED                   [ 33%]
+tests/test_booking_apis.py::test_get_booking_by_id PASSED                [ 50%]
+tests/test_booking_apis.py::test_update_booking_by_id PASSED             [ 66%]
+tests/test_booking_apis.py::test_partial_update_booking_by_id FAILED     [ 83%]
+tests/test_booking_apis.py::test_delete_booking_by_id PASSED             [100%]
+
+=================================== FAILURES ===================================
+______________________ test_partial_update_booking_by_id _______________________
+
+api_client = <utils.api_client.APIClient object at 0x105305a90>
+load_data = {'booking_details_data': {'additionalneeds': 'Breakfast', 'bookingdates': {'checkin': '2018-01-01', 'checkout': '2019-01-01'}, 'depositpaid': True, 'firstname': 'Jim', ...}, 'partial_update': {'firstname': 'Ryan', 'lastname': 'Leonard'}}
+generate_firstname = 'Ryan', generate_lastname = 'Leonard'
+
+    @pytest.mark.usefixtures()
+    def test_partial_update_booking_by_id(api_client,load_data,generate_firstname,generate_lastname):
+        booking_id = globals.booking_id
+    
+        username = "admin"
+        password = "password123"
+    
+        headers = {
+            "Content-Type": "application/json",
+        }
+        patch_update_details = load_data["partial_update"]
+        fname = generate_firstname
+        lname = generate_lastname
+        patch_update_details['firstname'] = fname
+        patch_update_details['lastname'] = lname
+    
+        response = api_client.partial_update_by_booking_id("booking",booking_id, username,password, patch_update_details)
+>       assert response.status_code == 201, f"Invalid status code got {response.status_code}"
+E       AssertionError: Invalid status code got 200
+E       assert 200 == 201
+E        +  where 200 = <Response [200]>.status_code
+
+tests/test_booking_apis.py:93: AssertionError
+----------------------------- Captured stdout call -----------------------------
+https://restful-booker.herokuapp.com/booking/4549
+- Generated html report: file:///Users/mdniyazhashmi/PycharmProjects/python-api-automation/pythonProject1/reports/report.html -
+=========================== short test summary info ============================
+FAILED tests/test_booking_apis.py::test_partial_update_booking_by_id - AssertionError: Invalid status code got 200
+assert 200 == 201
+ +  where 200 = <Response [200]>.status_code
+========================= 1 failed, 5 passed in 9.54s ==========================
