@@ -1,6 +1,8 @@
 name: API Continuous Automation
 
 on:
+  schedule:
+    - cron: "0 0 * * *"
 #  push:
 #    branches:
 #      - main
@@ -8,10 +10,6 @@ on:
 #permissions:
 #    id-token: write
 #    contents: read
-
-  schedule:
-    - cron: "*/2 * * * *"
-
 jobs:
   test:
     runs-on: ubuntu-latest
