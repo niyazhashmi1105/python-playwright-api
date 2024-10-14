@@ -1,4 +1,4 @@
-/*.html/
-/*.txt/
-/.idea/
+*.html
+test*.txt
+.idea/
 
