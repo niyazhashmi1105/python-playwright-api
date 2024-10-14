@@ -65,7 +65,7 @@ def test_update_booking_by_id(api_client,auth_token,load_data,generate_lastname)
     boooking_details['lastname'] = lname
 
     response = api_client.update_booking_by_id("booking", booking_id, boooking_details, headers)
-    assert response.status_code == 200, f"Invalid status code got {response.status_code}"
+    assert response.status_code == 201, f"Invalid status code got {response.status_code}"
     assert response.json()['lastname'] == lname, f"Invalid last name got {response.json()['lastname']}"
     assert response.json()['depositpaid'] == True, f"Invalid deposit paid received {response.json()['depositpaid']}"
     assert response.json()['bookingdates']['checkin'] == "2018-01-01", \

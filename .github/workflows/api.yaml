@@ -38,19 +38,17 @@ jobs:
         pip install -r requirements.txt
       working-directory: ${{ github.workspace }}
 
-    - name: Run tests,generate report and parse it
+    - name: Run tests,parse test results and generate html
       run: |
-            pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
-            python parse_report.py > test_results.txt
-            results=$(cat test_results.txt | sed 's/^/<li style="padding-bottom: 8px;>/' | sed 's/$/<\/li>/' | tr '\n' ' ')
-            echo "RESULTS=$results" >> $GITHUB_ENV  # Set the RESULTS environment variable
+            pytest -v tests/test_booking_apis.py > test_summary.txt
+            python parse_report.py
       continue-on-error: true
 
-    - name: Save test report as artifact
-      uses: actions/upload-artifact@v4
-      with:
-          name: html-report
-          path: reports/
+#    - name: Save test report as artifact
+#      uses: actions/upload-artifact@v4
+#      with:
+#          name: html-report
+#          path: reports/
 
     - name: Send email with HTML report
       uses: dawidd6/action-send-mail@v3
@@ -60,11 +58,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "API Automation Report: Pytest Test Results"
-          body: |
-              <h2>Please find the test results:</h2>
-                <ul style="list-style-type: none; padding: 0; margin: 0;">
-                    ${{ env.RESULTS }}
-                </ul>
+          body_file: email_body.html
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
