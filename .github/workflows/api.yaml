@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "API Automation Report: Pytest Test Results"
-          body: email_body.html
+          html_body: file://email_body.html
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
