@@ -27,6 +27,7 @@ if __name__ == '__main__':
     # Extract the test results
     results = extract_test_results_from_text(file_path)
 
-    # Print the results
-    for result in results:
-        print("\n".join(results))
+    if results:
+        print("\n".join(results))  # Joining results with newline for clarity
+    else:
+        print("No test results found.")
