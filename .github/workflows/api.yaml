@@ -42,7 +42,7 @@ jobs:
       run: |
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
             python parse_report.py > test_results.txt
-            results=$(cat test_results.txt | tr '\n' ' ')
+            results=$(cat test_results.txt | sed 's/^/<li>/' | sed 's/$/<\/li>/' | tr '\n' ' ')
             echo "RESULTS=$results" >> $GITHUB_ENV  # Set the RESULTS environment variable
       continue-on-error: true
 
