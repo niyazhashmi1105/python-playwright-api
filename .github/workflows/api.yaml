@@ -62,7 +62,7 @@ jobs:
           subject: "API Automation Report: Pytest Test Results"
           body: |
               <h2>Please find the test results:</h2>
-                <ul>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
                     ${{ env.RESULTS }}
                 </ul>
           to: niyazhashmi161921@gmail.com
