@@ -41,9 +41,11 @@ jobs:
     - name: Run tests,parse test results and generate html
       run: |
             pytest -v tests/test_booking_apis.py > test_summary.txt
-            python parse_report.py
       continue-on-error: true
 
+    - name: Parse test results and generate email body
+      run: |
+           python parse_results.py
 #    - name: Save test report as artifact
 #      uses: actions/upload-artifact@v4
 #      with:
@@ -58,7 +60,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "API Automation Report: Pytest Test Results"
-          body_file: email_body.html
+          body: email_body.html
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
