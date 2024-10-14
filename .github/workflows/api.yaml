@@ -46,11 +46,12 @@ jobs:
     - name: Parse test results and generate email body
       run: |
             python parse_report.py
-#    - name: Save test report as artifact
-#      uses: actions/upload-artifact@v4
-#      with:
-#          name: html-report
-#          path: reports/
+
+    - name: Save test report as artifact
+      uses: actions/upload-artifact@v4
+      with:
+          name: pytest-html-report
+          path: reports/
 
     - name: Send email with HTML report
       uses: dawidd6/action-send-mail@v3
