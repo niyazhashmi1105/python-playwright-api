@@ -1,7 +1,15 @@
+import os
 from bs4 import BeautifulSoup
 
 
 def extract_test_results(report_path):
+
+    print("current working directory", os.getcwd())
+    print("HTML Report path ", report_path)
+
+    if not os.path.exists(report_path):
+        raise FileNotFoundError(f"Report file not found: {report_path}")
+
     # Open and read the HTML report
     with open(report_path, 'r', encoding='utf-8') as file:
         html_content = file.read()
@@ -27,11 +35,18 @@ def extract_test_results(report_path):
 
 
 if __name__ == '__main__':
+
+
+    print("current working directory ", os.getcwd())
+
+    current_dir = os.getcwd()
+    reports_dir = os.path.join(current_dir,'reports/report.html')
+
     # Path to the HTML report
-    report_path = 'reports/report.html'
+    #report_path = os.getcwd()+'/reports/report.html'
 
     # Extract the test results
-    results = extract_test_results(report_path)
+    results = extract_test_results(reports_dir)
 
     # Format the results for embedding into the email
     results_summary = "\n".join([f"{result['name']}: {result['status']}" for result in results])

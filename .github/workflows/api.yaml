@@ -52,8 +52,10 @@ jobs:
     - name: Extract Test Results
       id: extract-results
       run: |
-          python ./utils/parse_report.py > test_summary.txt
-          cat test_summary.txt
+            ls -al reports/
+            chmod 644 reports/report.html
+            python parse_report.py > test_summary.txt
+            cat test_summary.txt
 
     - name: Send email with HTML report
       uses: dawidd6/action-send-mail@v3
