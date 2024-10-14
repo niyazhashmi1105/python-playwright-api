@@ -46,7 +46,7 @@ jobs:
             cat test_summary.txt
             python parse_report.py > test_results.txt
             results=$(cat test_results.txt)
-            echo "$results" > $GITHUB_ENV
+            echo "$results" >> $GITHUB_ENV
       continue-on-error: true
 
     - name: Save test report as artifact
