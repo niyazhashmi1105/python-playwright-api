@@ -45,7 +45,8 @@ jobs:
             pytest -v tests/test_booking_apis.py --html=reports/report.html --self-contained-html > test_summary.txt
             cat test_summary.txt
             python parse_report.py > test_results.txt
-            cat test_results.txt
+            results=$(cat test_results.txt)
+            echo "::set-output name=results::$results"
       continue-on-error: true
 
     - name: Save test report as artifact
@@ -62,12 +63,10 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Test Report: API Automation Results"
+          content_type: text/plain
           body: |
-              <h2>API Automation Test Report Summary</h2>
-              <p>Below is the summary of the test results:</p>
-              <pre>echo ${{ steps.extract-results.outputs.summary }}</pre>
-              <pre>${{ steps.extract-results.outputs.summary }}</pre> 
-              <p>The detailed HTML report attached.</p>
+              Here are the test results:
+              ${{ steps.extract-results.outputs.results }}
           to: niyazhashmi161921@gmail.com
           from: niyazhashmi161921@gmail.com
           attachments: reports/report.html
