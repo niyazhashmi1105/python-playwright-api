@@ -3,16 +3,14 @@
 **Installation**
 To set up the framework, ensure you have Python installed on your system. Follow these steps to clone the repository and install dependencies:
 
-git clone <repository-url>
-cd <repository-directory>
-pip install -r requirements.txt
-Folder Structure
-Here's an overview of the folder structure in this project and the purpose of each directory and file:
+## git clone <repository-url> ##
+## cd <repository-directory> ##
+## pip install -r requirements.txt ##
+**Folder Structure**
+### Here's an overview of the folder structure in this project and the purpose of each directory and file: ###
 
-.
+'''
 ├── .github/workflows/          # GitHub Actions workflows for CI/CD
-├── .idea/                      # IDE settings (JetBrains IDEs)
-├── __pycache__/                # Compiled Python files
 ├── data/                       # JSON or test data files
 ├── reports/                    # Directory for storing test reports
 ├── tests/                      # Test cases for the APIs
@@ -21,12 +19,12 @@ Here's an overview of the folder structure in this project and the purpose of ea
 ├── utils/                      # Utility functions and helpers
 │   ├── auth.py                 # Functions for handling authentication
 │   ├── parse_report.py         # Functions to parse test reports
-├── .gitignore                  # Git ignore file to exclude files/folders from version control
 ├── conftest.py                 # Configuration for pytest fixtures
 ├── globals.py                  # Global variables used across tests
 ├── parse_report.py             # Script to parse the test report
 ├── pytest.ini                  # Configuration file for pytest
 └── requirements.txt            # List of required Python packages
+'''
 
 **Directory/File Descriptions**
 .github/workflows/: Contains the GitHub Actions workflows for CI/CD integration, which automate the testing process on push or pull request events.
