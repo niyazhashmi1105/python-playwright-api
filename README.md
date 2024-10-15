@@ -1,3 +1,5 @@
+[![API Automation](https://github.com/niyazhashmi1105/python-playwright-api/actions/workflows/api.yaml/badge.svg?branch=main)](https://github.com/niyazhashmi1105/python-playwright-api/actions/workflows/api.yaml)
+
 **Installation**
 To set up the framework, ensure you have Python installed on your system. Follow these steps to clone the repository and install dependencies:
 
@@ -77,4 +79,3 @@ You can parse the report using the provided utility functions in the utils/parse
 We send mail with html report as an attachment and detailed test results in email body.
 If all the test cases are passed then it is displayed in green color and if it gets failed highlighted in red color.
 
-[![API Automation](https://github.com/niyazhashmi1105/python-playwright-api/actions/workflows/api.yaml/badge.svg?branch=main)](https://github.com/niyazhashmi1105/python-playwright-api/actions/workflows/api.yaml)
