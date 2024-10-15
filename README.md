@@ -1,16 +1,12 @@
-Installation
+**Installation**
 To set up the framework, ensure you have Python installed on your system. Follow these steps to clone the repository and install dependencies:
 
-bash
-Copy code
 git clone <repository-url>
 cd <repository-directory>
 pip install -r requirements.txt
 Folder Structure
 Here's an overview of the folder structure in this project and the purpose of each directory and file:
 
-bash
-Copy code
 .
 ├── .github/workflows/          # GitHub Actions workflows for CI/CD
 ├── .idea/                      # IDE settings (JetBrains IDEs)
@@ -29,7 +25,8 @@ Copy code
 ├── parse_report.py             # Script to parse the test report
 ├── pytest.ini                  # Configuration file for pytest
 └── requirements.txt            # List of required Python packages
-Directory/File Descriptions
+
+**Directory/File Descriptions**
 .github/workflows/: Contains the GitHub Actions workflows for CI/CD integration, which automate the testing process on push or pull request events.
 
 .idea/: This folder contains configuration files for JetBrains IDEs (like PyCharm). It can be ignored in version control if you want to keep your workspace settings private.
@@ -60,21 +57,22 @@ pytest.ini: Configuration file for pytest, where you can set various options and
 
 requirements.txt: Contains a list of Python dependencies required to run the tests. Install them using pip install -r requirements.txt.
 
-Usage
+**Usage**
 Create your test cases in the tests/ directory.
 
 Use the utility functions from the utils/ directory as needed.
 
-Run your tests using Pytest:
+**Run your tests using Pytest**
+pytest tests/test_booking_apis.py
 
-bash
-Copy code
-pytest tests/
-Running Tests
+**Running Tests**
 You can run all tests with detailed output and generate an HTML report as follows:
-
-bash
-Copy code
 pytest tests/ --html=reports/report.html --self-contained-html
-Reporting
-After running the tests, the HTML report can be found in the reports/ directory. You can parse the report using the provided utility functions in the utils/parse_report.py script.
+
+**Reporting**
+After running the tests, the HTML report can be found in the reports/ directory. 
+You can parse the report using the provided utility functions in the utils/parse_report.py script.
+
+**Sending Mail**
+We send mail with html report as an attachment and detailed test results in email body.
+If all the test cases are passed then it is displayed in green color and if it gets failed highlighted in red color.

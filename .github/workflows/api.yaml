@@ -1,15 +1,14 @@
 name: API Automation
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
-#  push:
-#    branches:
-#      - main
-#
-#permissions:
-#    id-token: write
-#    contents: read
+#  schedule:
+#    - cron: "0 0 * * *"
+  push:
+    branches:
+      - main
+permissions:
+    id-token: write
+    contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -36,7 +35,7 @@ jobs:
 
     - name: Parse test results and generate email body
       run: |
-            python parse_report.py
+            python utils/parse_report.py
 
     - name: Save test report as artifact
       uses: actions/upload-artifact@v4
