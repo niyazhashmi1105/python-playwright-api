@@ -76,3 +76,5 @@ You can parse the report using the provided utility functions in the utils/parse
 **Sending Mail**
 We send mail with html report as an attachment and detailed test results in email body.
 If all the test cases are passed then it is displayed in green color and if it gets failed highlighted in red color.
+
+[![API Automation](https://github.com/niyazhashmi1105/python-playwright-api/actions/workflows/api.yaml/badge.svg?branch=main)](https://github.com/niyazhashmi1105/python-playwright-api/actions/workflows/api.yaml)
